@@ -1,0 +1,23 @@
+import os
+import configparser
+
+# Read the configuration from config.ini
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+# Download Thunderbird
+os.system(f"wget -O {config['paths']['download_path']}/thunderbird.tar.bz2 '{config['links']['thunderbird_latest']}'")
+
+# Extract the contents of the downloaded file
+os.system(f"tar xjf {config['paths']['download_path']}/thunderbird.tar.bz2 -C {config['paths']['download_path']}")
+
+# Move the uncompressed Thunderbird folder to /opt
+os.system(f"sudo mv {config['paths']['download_path']}/thunderbird {config['paths']['opt_path']}")
+
+# Create a symlink to the Thunderbird executable
+os.system(f"sudo ln -s {config['paths']['opt_path']}/thunderbird/thunderbird {config['paths']['bin_path']}/thunderbird")
+
+# Download a copy of the desktop file
+os.system(f"sudo wget {config['links']['desktop_file']} -P {config['paths']['applications_path']}")
+
+print("Thunderbird has been installed successfully!")
