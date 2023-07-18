@@ -56,4 +56,4 @@ Python 3.X.X (Often preinstalled on many distros).
 
 - [x] automate installation of TB 115 from `*.tar`.
 - [ ] uninstall script
-- [ ] one script to rule them all
+- [x] one script to rule them all (main.py can now prompt y/n to run subscript
